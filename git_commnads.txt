@@ -1,0 +1,18 @@
+Git Commands:
+
+1.Create a folder "hostel-app"
+2.git init
+3.add the files to that folder
+4.git add .
+5.git commit -m "intial check in"
+
+After 5 step code is committed to our local branch called master by default
+
+Now we need to add our code to remote repository for that setup an account with git
+you will get git url where you need to create your project like below
+https://github.com/RavipatiKoti/Personal-Project.git
+
+6.git remote add origin https://github.com/RavipatiKoti/Personal-Project.git
+
+7.git push origin master
+
