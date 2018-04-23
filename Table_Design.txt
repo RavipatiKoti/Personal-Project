@@ -1,0 +1,4 @@
+1.Three tables :
+Account Details : Account ID Account Name Role IsAdmin
+User Details :UserID,Username,RoomNo,Occupation,College,Address,Account ID
+Personal Details :UserID,Person name,Sername,Fathername,Mothername,Addahr Card,Driving Liecense,Pan Card,RationCard,Permanent Address,Parent's Occupation.
