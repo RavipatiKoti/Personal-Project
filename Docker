@@ -1,0 +1,87 @@
+Docker is container-based application framework, which wraps a specific application with all its dependencies in a container. Docker containers can easily to ship to the remote location on start there without making entire application setup. This tutorial will help you to install Docker on Ubuntu 18.10, 18.04 LTS, and 16.04 LTS
+
+1. Prerequsites
+The very first step is to remove any default Docker packages from the system before installation Docker on a Linux VPS. Execute commands to remove unnecessary Docker versions.
+
+sudo apt-get purge docker lxc-docker docker-engine docker.io
+Now install some required packages on your system for installing Docker on Ubuntu system. Run the below commands to do this:
+
+sudo apt-get install  curl  apt-transport-https ca-certificates software-properties-common
+2. Setup Docker Repository
+Now import dockers official GPG key to verify packages signature before installing them with apt-get. Run the below command on terminal.
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add 
+After that add the Docker repository on your Ubuntu system which contains Docker packages including its dependencies. You must have to enable this repository to install Docker on Ubuntu.
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+3. Install Docker on Ubuntu
+Your system is now ready for Docker installation. Run the following commands to upgrade apt index and then install Docker community edition on Ubuntu.
+
+sudo apt-get update
+sudo apt-get install docker-ce
+After successful installation of Docker community edition, the service will start automatically, Use below command to verify service status.
+
+sudo systemctl status docker
+Your system is now ready for running Docker containers. Use our Docker Tutorial for Beginners to working with Docker.
+
+4. How to Use Docker
+After installation of Docker on a Linux. Here are some basic details for search and download Docker images, launch containers and manage them.
+
+Search Docker Images
+First of all search Docker container images from Docker hub. For example, below command will search all images with Ubuntu and list as output.
+
+docker search ubuntu
+Download Docker Images
+Now download the Docker container with name Ubuntu on your local system using following commands.
+
+docker pull ubuntu
+
+latest: Pulling from library/ubuntu
+
+fa5be2806d4c: Pull complete
+b4af4261cb15: Downloading [==>               ] 3.779 MB/70.55 MB
+5d358abc5d9c: Download complete
+2933d50b9f77: Download complete
+Now make sure that above images have been downloaded successfully on your system. Below command list all images.
+
+docker images
+
+REPOSITORY  TAG            IMAGE ID            CREATED             VIRTUAL SIZE
+ubuntu      latest         36248ae4a9ac        7 days ago          188 MB
+Launch New Container with Image
+Finally, launch a Docker container using an above-downloaded image on your system. Below command will start a new container and provide you access to that container with /bin/bash shell.
+
+docker run -i -t ubuntu /bin/bash
+To exit from docker container type CTRL + P + Q. This will leave container running in the background an provide you host system console. If you used exit command, it will stop the current container.
+
+After exiting from Docker container, execute below command to list all running containers.
+
+docker ps
+
+CONTAINER ID     IMAGE     COMMAND        CREATED        STATUS        PORTS    NAMES
+f2582758af13     ubuntu    "/bin/bash"    2 hours ago    Up 2 hours             first_ubuntu
+By default Above command will list only running containers. To list all containers (including stopped container) use following command.
+
+docker ps -a
+Start/Stop/Attach Container
+You can start, stop or attach to any containers with following commands. To start container use following command.
+
+docker start <CONTAINER_ID>
+To stop container use following command.
+
+docker stop <CONTAINER_ID>
+To attach to currently running container use following command.
+
+docker attach <CONTAINER_ID>
+
+
+
+Issues:
+
+docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.26/containers/create: dial unix /var/run/docker.sock: connect: permission denied.
+
+Resoultion:
+The error message tells you that your current user can’t access the docker engine, because you’re lacking permissions to access the unix socket to communicate with the engine.
+sudo usermod -a -G docker $USER
+reboot the system
+
